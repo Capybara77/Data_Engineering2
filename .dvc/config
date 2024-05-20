@@ -1,0 +1,7 @@
+[core]
+    remote = minio_remote
+['remote "minio_remote"']
+    url = s3://data
+    endpointurl = http://localhost:9000
+    access_key_id = minio-root-user
+    secret_access_key = minio-root-password
