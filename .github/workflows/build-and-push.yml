@@ -1,0 +1,26 @@
+name: Build and Tag mlops Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Build and tag image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: capybara777/data_engineering2:${{ github.sha }}-${{ github.ref_name }}
