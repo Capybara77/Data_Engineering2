@@ -3,8 +3,7 @@ name: Build and Tag mlops Image
 on:
   push:
     branches:
-      - master
-      - docker
+      - main
 
 jobs:
   build-and-tag:

@@ -3,8 +3,9 @@ from PIL import Image
 from ultralyticsplus import YOLO, render_result
 import streamlit as st
 
-path_to_model = 'best.pt'
+path_to_model = "best.pt"
 model = YOLO(path_to_model)
+
 
 def process_image(image_upload):
     img = Image.open(image_upload)
@@ -12,14 +13,15 @@ def process_image(image_upload):
     render = render_result(model=model, image=img, result=results[0])
     return render
 
-st.title('Recagnise image')
 
-image_upload = st.file_uploader("Download Image", type=["jpg", "png", "jpeg"])
+st.title("Распознавание объектов на изображении")
+
+image_upload = st.file_uploader("Загрузите изображение", type=["jpg", "png", "jpeg"])
 
 if image_upload is not None:
-    st.image(image_upload, caption='Downloaded Image', use_column_width=True)
+    st.image(image_upload, caption="Загруженное изображение", use_column_width=True)
 
-    with st.spinner('Image processing...'):
+    with st.spinner("Обработка изображения..."):
         result_image = process_image(image_upload)
 
-    st.image(result_image, caption='Processed Image', use_column_width=True)
+    st.image(result_image, caption="Обработанное изображение", use_column_width=True)
