@@ -21,8 +21,8 @@ class TestYOLOModel(unittest.TestCase):
 
         self.assertGreater(len(results[0].boxes), 0, "No bounding boxes found in the prediction")
 
-        self.assertTrue(self.model.conf is not None, "Model confidence threshold is not set")
-        self.assertTrue(self.model.iou is not None, "Model IoU threshold is not set")
+        self.assertIsNotNone(self.model.overrides.get('conf'), "Model confidence threshold is not set")
+        self.assertIsNotNone(self.model.overrides.get('iou'), "Model IoU threshold is not set")
 
 if __name__ == '__main__':
     unittest.main()
