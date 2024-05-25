@@ -1,4 +1,3 @@
-import io
 from PIL import Image
 from ultralyticsplus import YOLO, render_result
 import streamlit as st
@@ -16,12 +15,24 @@ def process_image(image_upload):
 
 st.title("Распознавание объектов на изображении")
 
-image_upload = st.file_uploader("Загрузите изображение", type=["jpg", "png", "jpeg"])
+image_upload = st.file_uploader(
+    "Загрузите изображение",
+    type=["jpg", "png", "jpeg"]
+    )
 
 if image_upload is not None:
-    st.image(image_upload, caption="Загруженное изображение", use_column_width=True)
+    st.image(
+        image_upload,
+        caption="Загруженное изображение",
+        use_column_width=True
+        )
 
     with st.spinner("Обработка изображения..."):
         result_image = process_image(image_upload)
 
-    st.image(result_image, caption="Обработанное изображение", use_column_width=True)
+    st.image(
+        result_image,
+        caption="Обработанное изображение",
+        use_column_width=True
+        )
+
