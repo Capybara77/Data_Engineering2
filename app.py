@@ -10,7 +10,7 @@ def process_image(image_upload):
     img = Image.open(image_upload)
     results = model.predict(img)
     render = render_result(model=model, image=img, result=results[0])
-    return render.image
+    return render
 
 st.title('Recagnise image')
 
