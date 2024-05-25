@@ -1,28 +1,28 @@
 import unittest
-from ultralyticsplus import YOLO
-import os
+from ultralyticsplus import YOLO, render_result
 
-class TestYOLOModel(unittest.TestCase):
+class TestObjectDetection(unittest.TestCase):
 
     def setUp(self):
-        self.path_to_model = 'best.pt'
-        self.image_path = 'image.jpg'
+        self.model = YOLO("best.pt")
 
-        self.assertTrue(os.path.exists(self.path_to_model), f"Model file {self.path_to_model} does not exist")
+    def test_detection(self):
+        image_path = "image.jpg"
+        results = self.model.predict(image_path)
 
-        self.assertTrue(os.path.exists(self.image_path), f"Image file {self.image_path} does not exist")
+        self.assertGreater(len(results[0].boxes), 0, "Модель не обнаружила объектов на изображении.")
 
-        self.model = YOLO(self.path_to_model)
+        for box in results[0].boxes:
+            self.assertGreater(box.conf, 0.5, "Уверенность обнаруженного объекта ниже 0.5.")
 
-    def test_model_prediction(self):
-        results = self.model.predict(self.image_path)
+    def test_detection_any_class(self):
+        image_path = "image.jpg"
+        results = self.model.predict(image_path)
 
-        self.assertGreater(len(results), 0, "No predictions were made by the model")
+        self.assertGreater(len(results[0].boxes), 0, "Модель не обнаружила объектов на изображении.")
 
-        self.assertGreater(len(results[0].boxes), 0, "No bounding boxes found in the prediction")
+    def tearDown(self):
+        pass
 
-        self.assertIsNotNone(self.model.overrides.get('conf'), "Model confidence threshold is not set")
-        self.assertIsNotNone(self.model.overrides.get('iou'), "Model IoU threshold is not set")
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
