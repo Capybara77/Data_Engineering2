@@ -35,4 +35,3 @@ if image_upload is not None:
         caption="Обработанное изображение",
         use_column_width=True
         )
-
