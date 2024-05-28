@@ -30,6 +30,15 @@ class TestObjectDetection(unittest.TestCase):
         self.assertGreater(len(results[0].boxes), 0,
                            "Модель не обнаружила объектов на изображении.")
 
+    def test_detection_image2(self):
+        image_path = "image2.jpg"  # Путь к второму тестовому изображению
+        # Получение результатов предсказания модели
+        results = self.model.predict(image_path)
+
+        # Проверка, что модель обнаружила хотя бы один объект на изображении
+        self.assertGreater(len(results[0].boxes), 0,
+                           "Модель не обнаружила объектов на 2 изображении.")
+
     # Метод, который выполняется после каждого теста
     def tearDown(self):
         pass  # Здесь можно освободить ресурсы, если это необходимо
