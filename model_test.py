@@ -1,6 +1,7 @@
 import unittest
 from ultralyticsplus import YOLO
 
+
 # Определение класса тестирования для обнаружения объектов
 class TestObjectDetection(unittest.TestCase):
 
@@ -28,16 +29,17 @@ class TestObjectDetection(unittest.TestCase):
         # Проверка, что модель обнаружила хотя бы один объект на изображении
         self.assertGreater(len(results[0].boxes), 0,
                            "Модель не обнаружила объектов на изображении.")
-
-    # Тест для проверки обнаружения объектов на втором изображении
-    def test_detection_image2(self):
+    
+    def test_detection_image2(self):    
         image_path = "image2.jpg"  # Путь к второму тестовому изображению
         # Получение результатов предсказания модели
         results = self.model.predict(image_path)
 
         # Проверка, что модель обнаружила хотя бы один объект на изображении
         self.assertGreater(len(results[0].boxes), 0,
-                           "Модель не обнаружила объектов на втором изображении.")
+                           "Модель не обнаружила объектов на 2 изображении.")
+        
+
 
     # Метод, который выполняется после каждого теста
     def tearDown(self):
