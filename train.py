@@ -79,6 +79,7 @@ train_list, test_list = train_test_split(
 val_list, test_list = train_test_split(
     test_list, test_size=0.5, random_state=42)
 
+
 # Вывод информации о размерах наборов данных
 print("total =", len(image_list))
 print("train :", len(train_list))
@@ -91,6 +92,7 @@ def copy_data(file_list, img_labels_root, imgs_source, mode):
 
     images_path = dataset_root / "images" / mode
     labels_path = dataset_root / "labels" / mode
+
     images_path.mkdir(parents=True, exist_ok=True)
     labels_path.mkdir(parents=True, exist_ok=True)
 
@@ -118,5 +120,6 @@ config = {
     "nc": 3,
     "names": ["helmet", "head", "person"],
 }
+
 with open("data.yaml", "w") as file:
     yaml.dump(config, file, default_flow_style=False)
