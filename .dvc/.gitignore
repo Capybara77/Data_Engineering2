@@ -1,3 +1,32 @@
 /config.local
 /tmp
 /cache
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore virtual environment directory
+.venv/
+
+# Ignore build directory
+build/
+
+# Ignore distribution directory
+dist/
+
+# Ignore compiled bytecode
+*.pyc
+
+# Ignore local settings file
+settings_local.py
+
+# Ignore environment-specific settings files
+settings_dev.py
+settings_prod.py
+
+# Ignore logs directory
+logs/
+
+# Ignore IDE-specific files and directories
+.idea/
+.vscode/
