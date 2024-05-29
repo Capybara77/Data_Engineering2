@@ -99,8 +99,8 @@ def copy_data(file_list, img_labels_root, imgs_source, mode):
     images_path.mkdir(parents=True, exist_ok=True)
     labels_path.mkdir(parents=True, exist_ok=True)
 
-    for file in tqdm(file_list, desc=f"Copying {mode} data"):
-        base_filename = file.replace(".png", "")
+    for tqdm_file in tqdm(file_list, desc=f"Copying {mode} data"):
+        base_filename = tqdm_file.replace(".png", "")
 
         img_src_file = Path(imgs_source) / (base_filename + ".png")
         label_src_file = Path(img_labels_root) / (base_filename + ".txt")

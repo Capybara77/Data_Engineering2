@@ -16,8 +16,8 @@ model = YOLO(path_to_model)  # Инициализируем модель
 """
 
 
-def process_image(image_upload):
-    img = Image.open(image_upload)  # Открываем загруженное изображение
+def process_image(given_image_upload):
+    img = Image.open(given_image_upload)  # Открываем загруженное изображение
     results = model.predict(img)  # Предсказываем объекты на изображении
     render = render_result(model=model, image=img, result=results[0])  # Рендерим результат
     return render  # Возвращаем отрендеренный результат
