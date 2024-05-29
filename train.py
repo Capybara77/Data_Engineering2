@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 # Список классов, которые мы будем использовать для аннотации
 classes = ["helmet", "head", "person"]
 
+
 # Функция для преобразования аннотации в формат, который мы будем использовать для обучения модели
 def convert_annot(size, box):
     x1 = int(box[0])
@@ -31,6 +32,7 @@ def convert_annot(size, box):
     h = h * dh
     return [x, y, w, h]
 
+
 # Функция для сохранения аннотаций в формате txt
 def save_txt_file(img_jpg_file_name, size, img_box):
     save_file_name = "/Dataset/labels/" + img_jpg_file_name + ".txt"
@@ -42,6 +44,7 @@ def save_txt_file(img_jpg_file_name, size, img_box):
             file_path.write(
                 f"{cls_num} {new_box[0]} {new_box[1]} {new_box[2]} {new_box[3]}\n"
             )
+
 
 # Функция для получения аннотаций из xml-файла
 def get_xml_data(file_path, img_xml_file):
@@ -66,6 +69,7 @@ def get_xml_data(file_path, img_xml_file):
 
     save_txt_file(img_xml_file, [img_w, img_h], img_box)
 
+
 # Получение списка xml-файлов из директории /annotations
 files = os.listdir("/annotations")
 for file in tqdm(files, total=len(files)):
@@ -78,7 +82,6 @@ train_list, test_list = train_test_split(
     image_list, test_size=0.2, random_state=42)
 val_list, test_list = train_test_split(
     test_list, test_size=0.5, random_state=42)
-
 
 # Вывод информации о размерах наборов данных
 print("total =", len(image_list))
