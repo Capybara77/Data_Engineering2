@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 classes = ["helmet", "head", "person"]
 
 
-# Функция для преобразования аннотации в формат, который мы будем использовать 
+# Функция для преобразования аннотации в формат, который мы будем использовать
 # для обучения модели
 def convert_annot(size, box):
     x1 = int(box[0])
@@ -77,7 +77,7 @@ for file in tqdm(files, total=len(files)):
     file_xml = file.split(".")
     get_xml_data("/annotations/", file_xml[0])
 
-# Разделение списка изображений на тренировочный, 
+# Разделение списка изображений на тренировочный,
 # валидационный и тестовый наборы
 image_list = os.listdir("/annotations")
 train_list, test_list = train_test_split(
